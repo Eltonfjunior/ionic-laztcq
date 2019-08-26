@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar padding-left>
+    <h5>Simulador De Empréstimos</h5> 
+
+    <ion-item>
+    <ion-label floating style="font-weight: bold">Valor do Emprestimo:</ion-label>
+    <ion-input 
+      type="number" 
+      step="0.01"
+      (ionChange)="calcularEmprestimo()"
+      [(ngModel)]="Valor">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating style="font-weight: bold">Taxa de juros:</ion-label>
+    <ion-input 
+      type="number"
+      step="0.01"
+      (ionChange)="calcularEmprestimo()"
+      [(ngModel)]="Taxa">
+    </ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label floating style="font-weight: bold">Quantidade de Parcelas:</ion-label>
+    <ion-input 
+      type="number"
+      (ionChange)="calcularEmprestimo()"
+      [(ngModel)]="Quantidade">
+    </ion-input>
+  </ion-item>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-toolbar padding-left>
+    <h5>Cálculo Emprestimos</h5>
+    <p >
+      <b>Valor Total:</b>
+      <span [style.color]="colorAssociado">
+        {{totalEmprestimo}}
+      </span>
+    </p>
+
+    <p>
+      <b>Valor Parcela:</b> 
+      <span [style.color]="colorNaoAssociado">
+        {{totalParcela}}
+      </span>
+    </p>
+    
+    <p>
+      <b>Diferença Juros:</b> 
+      <span>
+        {{diferencaJuros}}
+      </span>
+    </p>
+
+  </ion-toolbar>
+  <ion-toolbar padding-left>
+    <h5>Parcelas:</h5>
+    <ion-list>
+      <ion-item *ngFor="let parcela of listaParcelas" >
+        <p>
+          <b>Parcela:</b> {{parcela.numParcela}} <br />
+          <b>Valor:</b> {{parcela.valorParcela}} <br />
+          <b>Amortização:</b> {{parcela.valorAmortizacao}} <br />
+          <b>Juros:</b> {{parcela.valorJuros}} <br />
+          <b>Saldo Devedor:</b> {{parcela.saldoDevedor}}
+        </p>
+      </ion-item>
+    </ion-list>
+  </ion-toolbar>  
+</ion-content>
